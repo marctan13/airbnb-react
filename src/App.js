@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Navbar from "./Navbar.js";
+import Hero from "./Hero.js"
+import Card from "./Card.js";
+import data from "./data";
 
-function App() {
+export default function App() {
+    //cards component iterating data.js
+  const cards = data.map(item => {
+    return (
+      <Card
+      //insert props
+        key = {item.id} //assigns unique key
+        {...item}
+      />
+    );
+  });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Navbar img={require("./images/airbnb-logo.png")} />
+      <Hero />
+      <section className="cards-list">
+      {cards}
+      </section>
     </div>
   );
 }
-
-export default App;
